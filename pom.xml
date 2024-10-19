@@ -8,11 +8,11 @@
         <version>3.3.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>co.edu.uco.ubico</groupId>
-    <artifactId>ubico-generales</artifactId>
+    <groupId>co.edu.uco.ucobet</groupId>
+    <artifactId>ucobet-generales</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ubico-generales</name>
-    <description>ubico-generales</description>
+    <name>ucobet-generales</name>
+    <description>ucobet-generales</description>
     <url/>
     <licenses>
         <license/>
