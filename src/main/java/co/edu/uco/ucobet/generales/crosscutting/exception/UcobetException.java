@@ -1,5 +1,6 @@
-package co.edu.uco.ucobet.generales.crosscutting.enums;
+package co.edu.uco.ucobet.generales.crosscutting.exception;
 
+import co.edu.uco.ucobet.generales.crosscutting.exception.enums.Layer;
 import co.edu.uco.ucobet.generales.crosscutting.helpers.ObjectHelper;
 import co.edu.uco.ucobet.generales.crosscutting.helpers.TextHelper;
 

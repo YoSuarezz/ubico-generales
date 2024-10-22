@@ -2,7 +2,7 @@ package co.edu.uco.ucobet.generales.application.secondaryports.data.sql.reposito
 
 import co.edu.uco.ucobet.generales.application.secondaryports.entity.CityEntity;
 import co.edu.uco.ucobet.generales.application.secondaryports.repository.CityRepositoryCustom;
-import co.edu.uco.ucobet.generales.crosscutting.enums.RepositoryUcobetException;
+import co.edu.uco.ucobet.generales.crosscutting.exception.RepositoryUcobetException;
 import co.edu.uco.ucobet.generales.crosscutting.helpers.ObjectHelper;
 import co.edu.uco.ucobet.generales.crosscutting.helpers.TextHelper;
 import co.edu.uco.ucobet.generales.crosscutting.helpers.UUIDHelper;

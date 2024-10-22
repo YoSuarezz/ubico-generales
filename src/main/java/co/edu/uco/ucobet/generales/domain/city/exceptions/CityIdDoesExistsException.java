@@ -1,6 +1,6 @@
 package co.edu.uco.ucobet.generales.domain.city.exceptions;
 
-import co.edu.uco.ucobet.generales.crosscutting.enums.RuleUcobetException;
+import co.edu.uco.ucobet.generales.crosscutting.exception.RuleUcobetException;
 
 public class CityIdDoesExistsException extends RuleUcobetException {
     public CityIdDoesExistsException(final String userMessage,

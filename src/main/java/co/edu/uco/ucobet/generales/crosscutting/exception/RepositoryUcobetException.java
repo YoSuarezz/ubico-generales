@@ -1,4 +1,6 @@
-package co.edu.uco.ucobet.generales.crosscutting.enums;
+package co.edu.uco.ucobet.generales.crosscutting.exception;
+
+import co.edu.uco.ucobet.generales.crosscutting.exception.enums.Layer;
 
 public class RepositoryUcobetException extends UcobetException{
 
