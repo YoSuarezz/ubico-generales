@@ -1,38 +1,32 @@
 package co.edu.uco.ucobet.generales.application.usecase.city.impl;
-
 import co.edu.uco.ucobet.generales.application.usecase.city.RegisterNewCityNameRulesValidator;
 import co.edu.uco.ucobet.generales.domain.city.CityDomain;
 import co.edu.uco.ucobet.generales.domain.city.rules.*;
+import org.springframework.stereotype.Service;
 
+@Service
 public final class RegisterNewCityNameRulesValidatorImpl implements RegisterNewCityNameRulesValidator {
 
-
-    private CityNameForStateDoesNotExistsRule cityNameForStateDoesNotExistsRule;
-    private CityNameIsNotNullRule cityNameIsNotNullRule;
-    private CityNameIsNotEmptyRule cityNameIsNotEmptyRule;
-    private CityNameLenghtIsValidRule cityNameLenghtIsValidRule;
+    private CityNameLenghtIsValidRule cityNameLengthIsValidRule;
     private CityNameFormatIsValidRule cityNameFormatIsValidRule;
+    private CityNameIsNotEmptyRule cityNameIsNotEmptyRule;
+    private CityNameIsNotNullRule cityNameIsNotNullRule;
+    private CityNameForStateDoesNotExistRule cityNameForStateDoesNotExistsRule;
 
-    public RegisterNewCityNameRulesValidatorImpl(final CityNameForStateDoesNotExistsRule cityNameForStateDoesNotExistsRule,
-                                                 final CityNameIsNotNullRule cityNameIsNotNullRule,
-                                                 final CityNameIsNotEmptyRule cityNameIsNotEmptyRule,
-                                                 final CityNameLenghtIsValidRule cityNameLenghtIsValidRule,
-                                                 final CityNameFormatIsValidRule cityNameFormatIsValidRule) {
-        this.cityNameForStateDoesNotExistsRule = cityNameForStateDoesNotExistsRule;
-        this.cityNameIsNotNullRule = cityNameIsNotNullRule;
-        this.cityNameIsNotEmptyRule = cityNameIsNotEmptyRule;
-        this.cityNameLenghtIsValidRule = cityNameLenghtIsValidRule;
+    public RegisterNewCityNameRulesValidatorImpl(CityNameLenghtIsValidRule cityNameLengthIsValidRule, CityNameFormatIsValidRule cityNameFormatIsValidRule, CityNameIsNotEmptyRule cityNameIsNotEmptyRule, CityNameIsNotNullRule cityNameIsNotNullRule, CityNameForStateDoesNotExistRule cityNameForStateDoesNotExistsRule) {
+        this.cityNameLengthIsValidRule = cityNameLengthIsValidRule;
         this.cityNameFormatIsValidRule = cityNameFormatIsValidRule;
+        this.cityNameIsNotEmptyRule = cityNameIsNotEmptyRule;
+        this.cityNameIsNotNullRule = cityNameIsNotNullRule;
+        this.cityNameForStateDoesNotExistsRule = cityNameForStateDoesNotExistsRule;
     }
 
     @Override
     public void validate(final CityDomain data) {
-        cityNameIsNotNullRule.validate(data.getName());
-        cityNameForStateDoesNotExistsRule.validate(data.getName());
-        cityNameIsNotEmptyRule.validate(data.getName());
+        cityNameLengthIsValidRule.validate(data.getName());
         cityNameFormatIsValidRule.validate(data.getName());
-        cityNameLenghtIsValidRule.validate(data.getName());
+        cityNameIsNotEmptyRule.validate(data.getName());
+        cityNameIsNotNullRule.validate(data.getName());
+        cityNameForStateDoesNotExistsRule.validate(data);
     }
-
-
 }

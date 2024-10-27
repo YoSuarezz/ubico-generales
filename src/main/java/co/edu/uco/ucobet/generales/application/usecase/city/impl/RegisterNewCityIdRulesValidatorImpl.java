@@ -5,7 +5,9 @@ import co.edu.uco.ucobet.generales.application.usecase.city.RegisterNewCityIdRul
 import co.edu.uco.ucobet.generales.domain.city.CityDomain;
 import co.edu.uco.ucobet.generales.domain.city.exceptions.CityIdDoesExistsException;
 import co.edu.uco.ucobet.generales.domain.city.rules.CityIdDoesNotExistsRule;
+import org.springframework.stereotype.Service;
 
+@Service
 public final class RegisterNewCityIdRulesValidatorImpl implements RegisterNewCityIdRulesValidator {
 
     private CityIdDoesNotExistsRule cityIdDoesNotExistsRule;

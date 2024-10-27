@@ -5,6 +5,6 @@ import co.edu.uco.ucobet.generales.application.primaryports.interactor.Interacto
 import org.springframework.stereotype.Service;
 
 @Service
-public interface RegisterNewCityIntercator extends InteractorWithoutReturn<RegisterNewCityDTO> {
+public interface RegisterNewCityInteractor extends InteractorWithoutReturn<RegisterNewCityDTO> {
 
 }

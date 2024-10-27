@@ -12,7 +12,7 @@ public class StateDoesNotExistException extends RuleUcobetException{
 	}
 
 	public static final StateDoesNotExistException create() {
-		var userMessage = "El estado no existe existe.";
+		var userMessage = "El estado no existe.";
 		return new StateDoesNotExistException(userMessage);
 	}
 

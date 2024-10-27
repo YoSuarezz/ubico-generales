@@ -5,34 +5,32 @@ import co.edu.uco.ucobet.generales.crosscutting.helpers.UUIDHelper;
 
 import java.util.UUID;
 
-public class RegisterNewCityDTO {
-
+public final class RegisterNewCityDTO {
     private String cityName;
     private UUID stateId;
 
-    public RegisterNewCityDTO(final String cityName, final UUID stateId) {
-        setCityName(cityName);
+    public RegisterNewCityDTO( final UUID stateId,final String cityName) {
         setStateId(stateId);
+        setCityName(cityName);
     }
 
-    public static RegisterNewCityDTO create(final String cityName, final UUID stateId) {
-        return new RegisterNewCityDTO(cityName, stateId);
+    public static RegisterNewCityDTO create(final UUID stateId,final String cityName){
+        return new RegisterNewCityDTO(stateId,cityName);
     }
 
-    public final String getCityName() {
+    public String getCity() {
         return cityName;
     }
 
-    private final void setCityName(String cityName) {
+    private void setCityName( final String cityName) {
         this.cityName = TextHelper.applyTrim(cityName);
     }
 
-    public final UUID getStateId() {
+    public UUID getStateId() {
         return stateId;
     }
 
-    private final void setStateId(UUID stateId) {
-        this.stateId = UUIDHelper.getDefault(stateId, UUIDHelper.getDefault());
+    private void setStateId( final UUID stateId) {
+        this.stateId = UUIDHelper.getDefault(stateId,UUIDHelper.getDefault());
     }
-
 }

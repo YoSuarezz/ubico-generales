@@ -6,7 +6,9 @@ import co.edu.uco.ucobet.generales.application.secondaryports.repository.CityRep
 import co.edu.uco.ucobet.generales.domain.city.CityDomain;
 import co.edu.uco.ucobet.generales.domain.city.exceptions.CityIsBeingUsedException;
 import co.edu.uco.ucobet.generales.domain.city.rules.CityIsNotBeingUsedRule;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CityIsNotBeingUsedRuleImpl implements CityIsNotBeingUsedRule{
 
 	private CityRepository cityRepository;

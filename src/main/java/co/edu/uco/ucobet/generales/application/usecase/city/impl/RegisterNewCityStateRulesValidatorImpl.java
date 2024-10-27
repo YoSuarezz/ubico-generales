@@ -4,27 +4,32 @@ import co.edu.uco.ucobet.generales.application.usecase.city.RegisterNewCityState
 import co.edu.uco.ucobet.generales.domain.state.rules.StateDoesExistRule;
 import co.edu.uco.ucobet.generales.domain.state.rules.StateIdIsNotDefaultValueRule;
 import co.edu.uco.ucobet.generales.domain.state.rules.StateIdIsNotNullRule;
-
+import org.springframework.stereotype.Service;
 import java.util.UUID;
 
+@Service
 public final class RegisterNewCityStateRulesValidatorImpl implements RegisterNewCityStateRulesValidator {
 
     private StateDoesExistRule stateDoesExistRule;
-    private StateIdIsNotDefaultValueRule stateIdIsNotDefaultValueRule;
     private StateIdIsNotNullRule stateIdIsNotNullRule;
+    private StateIdIsNotDefaultValueRule stateIdIsNotDefaultValueRule;
 
     public RegisterNewCityStateRulesValidatorImpl(final StateDoesExistRule stateDoesExistRule,
-                                                  final StateIdIsNotDefaultValueRule stateIdIsNotDefaultValueRule,
-                                                  final StateIdIsNotNullRule stateIdIsNotNullRule) {
+                                                  final StateIdIsNotNullRule stateIdIsNotNullRule,
+                                                  final StateIdIsNotDefaultValueRule stateIdIsNotDefaultValueRule) {
         this.stateDoesExistRule = stateDoesExistRule;
-        this.stateIdIsNotDefaultValueRule = stateIdIsNotDefaultValueRule;
         this.stateIdIsNotNullRule = stateIdIsNotNullRule;
+        this.stateIdIsNotDefaultValueRule = stateIdIsNotDefaultValueRule;
     }
 
     @Override
-    public void validate(final UUID stateId) {
-        stateIdIsNotNullRule.validate(stateId);
-        stateIdIsNotDefaultValueRule.validate(stateId);
-        stateDoesExistRule.validate(stateId);
+    public void validate(final UUID data) {
+        validateState(data);
+    }
+
+    private void validateState(final UUID data){
+        stateDoesExistRule.validate(data);
+        stateIdIsNotNullRule.validate(data);
+        stateIdIsNotDefaultValueRule.validate(data);
     }
 }

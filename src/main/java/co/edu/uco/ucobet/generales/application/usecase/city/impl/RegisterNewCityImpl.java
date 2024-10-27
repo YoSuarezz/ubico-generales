@@ -1,12 +1,14 @@
 package co.edu.uco.ucobet.generales.application.usecase.city.impl;
 
 import co.edu.uco.ucobet.generales.application.secondaryports.entity.CityEntity;
+import co.edu.uco.ucobet.generales.application.secondaryports.mapper.StateEntityMapper;
 import co.edu.uco.ucobet.generales.application.secondaryports.repository.CityRepository;
 import co.edu.uco.ucobet.generales.application.usecase.city.RegisterNewCity;
 import co.edu.uco.ucobet.generales.application.usecase.city.RegisterNewCityRulesValidator;
 import co.edu.uco.ucobet.generales.domain.city.CityDomain;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public final class RegisterNewCityImpl implements RegisterNewCity {
 
     private CityRepository cityRepository;
@@ -19,16 +21,17 @@ public final class RegisterNewCityImpl implements RegisterNewCity {
     }
 
     @Override
-    public void execute(CityDomain Domain) {
-
+    public void execute(CityDomain domain) {
         //Rules Validation
-        registerNewCityRulesValidator.validate(Domain);
+        registerNewCityRulesValidator.validate(domain);
 
         // DataMapper -> CityDomain to CityEntity
-        final var cityEntity =  CityEntity.create(null);
+        final var cityEntity= CityEntity.create().setId(domain.getId())
+                .setName(domain.getName())
+                .setState(StateEntityMapper.INSTANCE.toEntity(domain.getState()));
 
         // Save CityEntity
-        cityRepository.save(null);
+        cityRepository.save(cityEntity);
 
         //Notificar al administrador sobre la creacion de la nueva ciudad
         //TODO: ¿Cómo? Notification Building Block
