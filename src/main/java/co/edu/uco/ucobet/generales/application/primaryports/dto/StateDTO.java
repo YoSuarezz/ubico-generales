@@ -1,6 +1,5 @@
 package co.edu.uco.ucobet.generales.application.primaryports.dto;
 
-import co.edu.uco.ucobet.generales.application.secondaryports.entity.CountryEntity;
 import co.edu.uco.ucobet.generales.crosscutting.helpers.ObjectHelper;
 import co.edu.uco.ucobet.generales.crosscutting.helpers.TextHelper;
 import co.edu.uco.ucobet.generales.crosscutting.helpers.UUIDHelper;
@@ -23,6 +22,12 @@ public class StateDTO {
         setId(id);
         setName(name);
         setCountry(country);
+    }
+
+    public StateDTO(UUID id, String name) {
+        setId(id);
+        setName(name);
+        setCountry(CountryDTO.create());
     }
 
     static final StateDTO create() {

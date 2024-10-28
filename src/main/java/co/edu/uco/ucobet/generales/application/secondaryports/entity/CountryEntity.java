@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 import java.util.UUID;
-//patron ORM, acceso a datos
+
 @Entity
 @Table(name = "Country")
 public final class CountryEntity {
