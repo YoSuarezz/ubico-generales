@@ -13,7 +13,9 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/general/api/v1/states")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8080"})
+
+
 public class StateController {
     private final StateRepository stateRepository;
 
