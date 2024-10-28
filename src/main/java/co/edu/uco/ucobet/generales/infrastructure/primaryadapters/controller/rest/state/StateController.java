@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/general/api/v1/states")
+@CrossOrigin(origins = "http://localhost:3000")
 public class StateController {
     private final StateRepository stateRepository;
 
