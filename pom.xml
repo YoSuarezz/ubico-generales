@@ -114,6 +114,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+        <finalName>ucobet-generales</finalName>
     </build>
 
 </project>
