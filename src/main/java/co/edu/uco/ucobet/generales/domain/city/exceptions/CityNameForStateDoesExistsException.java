@@ -11,7 +11,7 @@ public class CityNameForStateDoesExistsException extends RuleUcobetException {
     }
 
     public static final CityNameForStateDoesExistsException create() {
-        var userMessage = "El nombre de la ciudad para este departamento ya existe";
+        var userMessage = "El nombre de la ciudad para este estado ya existe";
         return new CityNameForStateDoesExistsException(userMessage);
     }
 

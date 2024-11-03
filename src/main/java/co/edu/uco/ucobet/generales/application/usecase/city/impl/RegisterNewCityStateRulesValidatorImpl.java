@@ -4,8 +4,8 @@ import co.edu.uco.ucobet.generales.application.usecase.city.RegisterNewCityState
 import co.edu.uco.ucobet.generales.domain.state.rules.StateDoesExistRule;
 import co.edu.uco.ucobet.generales.domain.state.rules.StateIdIsNotDefaultValueRule;
 import co.edu.uco.ucobet.generales.domain.state.rules.StateIdIsNotNullRule;
-import org.springframework.stereotype.Service;
 import java.util.UUID;
+import org.springframework.stereotype.Service;
 
 @Service
 public final class RegisterNewCityStateRulesValidatorImpl implements RegisterNewCityStateRulesValidator {

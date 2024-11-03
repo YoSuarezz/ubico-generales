@@ -12,7 +12,7 @@ public class CityIsBeingUsedException extends RuleUcobetException{
     }
 
     public static final CityIsBeingUsedException create() {
-        var userMessage = "La ciudad esta siendo utilizada en otra parte del sistema";
+        var userMessage = "La ciudad ya está siendo utilizada.";
         return new CityIsBeingUsedException(userMessage);
     }
 

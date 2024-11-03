@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 public final class RegisterNewCityImpl implements RegisterNewCity {
 
-    private CityRepository cityRepository;
-    private RegisterNewCityRulesValidator registerNewCityRulesValidator;
+    private final CityRepository cityRepository;
+    private final RegisterNewCityRulesValidator registerNewCityRulesValidator;
 
     public RegisterNewCityImpl(final CityRepository cityRepository,
                                final RegisterNewCityRulesValidator registerNewCityRulesValidator) {
@@ -22,15 +22,16 @@ public final class RegisterNewCityImpl implements RegisterNewCity {
 
     @Override
     public void execute(CityDomain domain) {
-        //Rules Validation
+        // 1. Validar las reglas
         registerNewCityRulesValidator.validate(domain);
 
-        // DataMapper -> CityDomain to CityEntity
-        final var cityEntity= CityEntity.create().setId(domain.getId())
+        // 2. Mapper de CityDomain a CityEntity
+        final var cityEntity = CityEntity.create()
+                .setId(domain.getId())
                 .setName(domain.getName())
                 .setState(StateEntityMapper.INSTANCE.toEntity(domain.getState()));
 
-        // Save CityEntity
+        // 3. Guardar CityEntity
         cityRepository.save(cityEntity);
 
         //Notificar al administrador sobre la creacion de la nueva ciudad

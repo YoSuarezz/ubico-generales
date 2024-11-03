@@ -12,10 +12,8 @@ public class CityNameLenghIsValidRuleImpl implements CityNameLenghtIsValidRule {
 
 	@Override
 	public void validate(String data) {
-		if (data.length() < MIN_NAME_LENGTH && data.length() > MAX_NAME_LENGTH) {
+		if (data.length() < MIN_NAME_LENGTH || data.length() > MAX_NAME_LENGTH) {
 			throw CityNameLenghtIsNotValidException.create();
 		}
-
 	}
-
 }

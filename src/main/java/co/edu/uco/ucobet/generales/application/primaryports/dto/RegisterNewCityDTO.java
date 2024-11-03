@@ -10,8 +10,8 @@ public final class RegisterNewCityDTO {
     private UUID stateId;
 
     public RegisterNewCityDTO( final UUID stateId,final String cityName) {
-        setStateId(stateId);
         setCityName(cityName);
+        setStateId(stateId);
     }
 
     public static RegisterNewCityDTO create(final UUID stateId,final String cityName){

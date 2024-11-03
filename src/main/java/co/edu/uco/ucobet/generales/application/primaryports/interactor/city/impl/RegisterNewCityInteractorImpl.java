@@ -4,9 +4,8 @@ import co.edu.uco.ucobet.generales.application.primaryports.dto.RegisterNewCityD
 import co.edu.uco.ucobet.generales.application.primaryports.interactor.city.RegisterNewCityInteractor;
 import co.edu.uco.ucobet.generales.application.primaryports.mapper.CityDTOMapper;
 import co.edu.uco.ucobet.generales.application.usecase.city.RegisterNewCity;
-
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
