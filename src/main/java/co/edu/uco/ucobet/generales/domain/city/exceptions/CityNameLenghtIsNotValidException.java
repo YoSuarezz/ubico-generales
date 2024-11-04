@@ -12,7 +12,7 @@ public class CityNameLenghtIsNotValidException extends RuleUcobetException{
     }
 
     public static final CityNameLenghtIsNotValidException create() {
-        var userMessage = "El tamaño del nombre de la ciudad no es correcto";
+        var userMessage = "La longitud del nombre de la ciudad no es valido,";
         return new CityNameLenghtIsNotValidException(userMessage);
     }
 
