@@ -6,10 +6,12 @@ import co.edu.uco.ucobet.generales.application.secondaryports.repository.CityRep
 import co.edu.uco.ucobet.generales.crosscutting.exception.UcobetException;
 import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.response.CityResponse;
 import co.edu.uco.ucobet.generales.application.secondaryports.mapper.CityEntityMapper;
+import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.service.EmailService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,11 +21,14 @@ import java.util.stream.Collectors;
 public class RegisterNewCityController {
     private final RegisterNewCityInteractor registerNewCityInteractor;
     private final CityRepository cityRepository;
+    private final EmailService emailService;
 
-    public RegisterNewCityController(RegisterNewCityInteractor registerNewCityInteractor, CityRepository cityRepository) {
+    public RegisterNewCityController(RegisterNewCityInteractor registerNewCityInteractor, CityRepository cityRepository, EmailService emailService) {
         this.registerNewCityInteractor = registerNewCityInteractor;
         this.cityRepository = cityRepository;
+        this.emailService = emailService;
     }
+
 
     @PostMapping("/crearciudad")
     public ResponseEntity<CityResponse> registrar(@RequestBody RegisterNewCityDTO registerNewCityDTO) {
@@ -34,6 +39,7 @@ public class RegisterNewCityController {
             registerNewCityInteractor.execute(registerNewCityDTO);
             var mensajeUsuario = "La ciudad se ha registrado correctamente";
             cityResponse.getMensajes().add(mensajeUsuario);
+            emailService.sendSuccessEmail("Registro de Ciudad Exitoso", mensajeUsuario);
         } catch (final UcobetException excepcion) {
             httpStatusCode = HttpStatus.BAD_REQUEST;
             cityResponse.getMensajes().add(excepcion.getUserMessage());
