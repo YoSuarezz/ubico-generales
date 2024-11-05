@@ -15,7 +15,9 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/general/api/v1/cities")
+
 @CrossOrigin(origins = "http://localhost:8080", methods = {RequestMethod.GET, RequestMethod.POST})
+
 public class RegisterNewCityController {
 
     private final RegisterNewCityInteractor registerNewCityInteractor;
