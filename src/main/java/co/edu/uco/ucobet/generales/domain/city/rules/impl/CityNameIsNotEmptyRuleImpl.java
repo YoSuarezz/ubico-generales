@@ -6,7 +6,7 @@ import co.edu.uco.ucobet.generales.domain.city.rules.CityNameIsNotEmptyRule;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CityNameIsNotEmpyRuleImpl implements CityNameIsNotEmptyRule {
+public class CityNameIsNotEmptyRuleImpl implements CityNameIsNotEmptyRule {
 
 	@Override
 	public void validate(String data) {

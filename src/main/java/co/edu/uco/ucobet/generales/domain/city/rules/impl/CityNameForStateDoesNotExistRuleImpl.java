@@ -17,10 +17,10 @@ public class CityNameForStateDoesNotExistRuleImpl implements CityNameForStateDoe
 
 	@Override
 	public void validate(CityDomain data) {
-		var cityEntityFilter= CityEntity.create().setName(data.getName()).setState(StateEntityMapper.INSTANCE.toEntity(data.getState()));
-		var resultados= cityRepository.findByFilter(cityEntityFilter);
-
-		if (!resultados.isEmpty()) {
+		var cityEntity = CityEntity.create().setName(data.getName())
+				.setState(StateEntityMapper.INSTANCE.toEntity(data.getState()));
+		var resultado = cityRepository.findByFilter(cityEntity);
+		if (!resultado.isEmpty()) {
 			throw CityNameForStateDoesExistsException.create();
 		}
 	}

@@ -21,8 +21,5 @@ public final class CityIdDoesNotExistsRuleImpl implements CityIdDoesNotExistsRul
 		if(cityRepository.existsById(data)) {
 			throw CityIdDoesNotExistsException.create();
 		}
-		
-		
 	}
-
 }
