@@ -1,17 +1,18 @@
 package co.edu.uco.ucobet.generales.domain.city.exceptions;
 
 import co.edu.uco.ucobet.generales.crosscutting.exception.RuleUcobetException;
+import co.edu.uco.ucobet.generales.crosscutting.exception.service.MessageCatalogService;
 
 public class CityIdDoesExistsException extends RuleUcobetException {
 
-    private static final long serialVersionUTD = 1L;
+    private static final long serialVersionUID = 1L;
 
-    public CityIdDoesExistsException(final String userMessage) {
+    private CityIdDoesExistsException(final String userMessage) {
         super(userMessage, userMessage, new Exception());
     }
 
-    public static final CityIdDoesExistsException create(){
-        var userMessage = "La identificación de la ciudad ya existe.";
+    public static CityIdDoesExistsException create(MessageCatalogService messageCatalogService) {
+        var userMessage = messageCatalogService.getMessageOrDefault("CityIdDoesExistsException");
         return new CityIdDoesExistsException(userMessage);
     }
 }
