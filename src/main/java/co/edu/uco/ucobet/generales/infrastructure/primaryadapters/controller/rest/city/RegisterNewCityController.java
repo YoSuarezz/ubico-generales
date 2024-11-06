@@ -4,6 +4,7 @@ import co.edu.uco.ucobet.generales.application.primaryports.dto.RegisterNewCityD
 import co.edu.uco.ucobet.generales.application.primaryports.interactor.city.RegisterNewCityInteractor;
 import co.edu.uco.ucobet.generales.application.secondaryports.repository.CityRepository;
 import co.edu.uco.ucobet.generales.crosscutting.exception.UcobetException;
+import co.edu.uco.ucobet.generales.crosscutting.exception.service.MessageCatalogService;
 import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.response.CityResponse;
 import co.edu.uco.ucobet.generales.application.secondaryports.mapper.CityEntityMapper;
 import org.springframework.http.HttpStatus;
@@ -22,10 +23,12 @@ public class RegisterNewCityController {
 
     private final RegisterNewCityInteractor registerNewCityInteractor;
     private final CityRepository cityRepository;
+    private final MessageCatalogService messageCatalogService;
 
-    public RegisterNewCityController(RegisterNewCityInteractor registerNewCityInteractor, CityRepository cityRepository) {
+    public RegisterNewCityController(RegisterNewCityInteractor registerNewCityInteractor, CityRepository cityRepository, MessageCatalogService messageCatalogService) {
         this.registerNewCityInteractor = registerNewCityInteractor;
         this.cityRepository = cityRepository;
+        this.messageCatalogService = messageCatalogService;
     }
 
     @PostMapping("/crearciudad")
