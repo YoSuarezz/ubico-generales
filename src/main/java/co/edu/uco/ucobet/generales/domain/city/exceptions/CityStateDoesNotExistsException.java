@@ -1,7 +1,7 @@
 package co.edu.uco.ucobet.generales.domain.city.exceptions;
 
 import co.edu.uco.ucobet.generales.crosscutting.exception.RuleUcobetException;
-import co.edu.uco.ucobet.generales.crosscutting.exception.service.MessageCatalogService;
+import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.service.MessageCatalogService;
 
 public class CityStateDoesNotExistsException extends RuleUcobetException {
 

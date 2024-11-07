@@ -1,6 +1,6 @@
 package co.edu.uco.ucobet.generales.domain.city.rules.impl;
 
-import co.edu.uco.ucobet.generales.crosscutting.exception.service.MessageCatalogService;
+import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.service.MessageCatalogService;
 import co.edu.uco.ucobet.generales.crosscutting.helpers.TextHelper;
 import co.edu.uco.ucobet.generales.domain.city.exceptions.CityNameIsNullException;
 import co.edu.uco.ucobet.generales.domain.city.rules.CityNameIsNotNullRule;

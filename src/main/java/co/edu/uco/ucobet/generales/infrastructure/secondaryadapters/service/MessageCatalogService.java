@@ -1,4 +1,4 @@
-package co.edu.uco.ucobet.generales.crosscutting.exception.service;
+package co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;

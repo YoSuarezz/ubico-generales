@@ -5,7 +5,7 @@ import java.util.UUID;
 import co.edu.uco.ucobet.generales.application.secondaryports.repository.CityRepository;
 import co.edu.uco.ucobet.generales.domain.city.exceptions.CityIdDoesExistsException;
 import co.edu.uco.ucobet.generales.domain.city.rules.CityIdDoesExistsRule;
-import co.edu.uco.ucobet.generales.crosscutting.exception.service.MessageCatalogService;
+import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.service.MessageCatalogService;
 import org.springframework.stereotype.Service;
 
 @Service
