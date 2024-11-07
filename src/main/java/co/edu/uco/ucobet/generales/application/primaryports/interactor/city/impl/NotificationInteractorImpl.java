@@ -38,6 +38,4 @@ public class NotificationInteractorImpl implements NotificationInteractor {
             e.printStackTrace();
         }
     }
-
 }
-
