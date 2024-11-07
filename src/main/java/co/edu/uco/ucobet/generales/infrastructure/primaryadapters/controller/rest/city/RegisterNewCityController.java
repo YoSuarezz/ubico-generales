@@ -6,11 +6,16 @@ import co.edu.uco.ucobet.generales.application.primaryports.interactor.city.Retr
 import co.edu.uco.ucobet.generales.crosscutting.exception.UcobetException;
 import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.service.MessageCatalogService;
 import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.response.CityResponse;
+
+import co.edu.uco.ucobet.generales.application.secondaryports.mapper.CityEntityMapper;
+import jakarta.servlet.http.HttpServletRequest;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/general/api/v1/cities")
@@ -28,7 +33,11 @@ public class RegisterNewCityController {
     }
 
     @PostMapping("/crearciudad")
-    public ResponseEntity<CityResponse> registrar(@RequestBody RegisterNewCityDTO registerNewCityDTO) {
+    public ResponseEntity<CityResponse> registrar(@RequestBody RegisterNewCityDTO registerNewCityDTO, HttpServletRequest request) {
+        if (!isRequestFromPort8080(request)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+
         var httpStatusCode = HttpStatus.ACCEPTED;
         var cityResponse = new CityResponse();
 
@@ -50,13 +59,23 @@ public class RegisterNewCityController {
     }
 
     @GetMapping
-    public ResponseEntity<List<RegisterNewCityDTO>> obtenerCiudades() {
-        try {
-            var cities = retrieveCities.getAllCities();
-            return new ResponseEntity<>(cities, HttpStatus.OK);
-        } catch (final Exception excepcion) {
-            excepcion.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+    public ResponseEntity<List<RegisterNewCityDTO>> obtenerCiudades(HttpServletRequest request) {
+        if (!isRequestFromPort8080(request)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
+
+        var cities = cityRepository.findAll()
+                .stream()
+                .map(CityEntityMapper.INSTANCE::toDomain)
+                .map(cityDomain -> new RegisterNewCityDTO(cityDomain.getState().getId(), cityDomain.getName()))
+                .collect(Collectors.toList());
+
+        return new ResponseEntity<>(cities, HttpStatus.OK);
+
+    }
+
+    private boolean isRequestFromPort8080(HttpServletRequest request) {
+        return "8080".equals(request.getHeader("X-Forwarded-Port"));
     }
 }
