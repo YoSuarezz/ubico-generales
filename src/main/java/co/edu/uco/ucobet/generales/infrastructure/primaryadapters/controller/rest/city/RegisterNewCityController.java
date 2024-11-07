@@ -3,6 +3,7 @@ package co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.re
 import co.edu.uco.ucobet.generales.application.primaryports.dto.RegisterNewCityDTO;
 import co.edu.uco.ucobet.generales.application.primaryports.interactor.city.RegisterNewCityInteractor;
 import co.edu.uco.ucobet.generales.application.primaryports.interactor.city.RetrieveCities;
+import co.edu.uco.ucobet.generales.application.secondaryports.repository.CityRepository;
 import co.edu.uco.ucobet.generales.crosscutting.exception.UcobetException;
 import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.service.MessageCatalogService;
 import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.response.CityResponse;
@@ -15,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -25,11 +27,13 @@ public class RegisterNewCityController {
     private final RegisterNewCityInteractor registerNewCityInteractor;
     private final RetrieveCities retrieveCities;
     private final MessageCatalogService messageCatalogService;
+    private final CityRepository cityRepository;
 
-    public RegisterNewCityController(RegisterNewCityInteractor registerNewCityInteractor, RetrieveCities retrieveCities, MessageCatalogService messageCatalogService) {
+    public RegisterNewCityController(RegisterNewCityInteractor registerNewCityInteractor, RetrieveCities retrieveCities, MessageCatalogService messageCatalogService, CityRepository cityRepository) {
         this.registerNewCityInteractor = registerNewCityInteractor;
         this.retrieveCities = retrieveCities;
         this.messageCatalogService = messageCatalogService;
+        this.cityRepository = cityRepository;
     }
 
     @PostMapping("/crearciudad")
