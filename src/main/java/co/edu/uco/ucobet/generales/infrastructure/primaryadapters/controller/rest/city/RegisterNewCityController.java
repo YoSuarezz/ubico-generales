@@ -8,7 +8,6 @@ import co.edu.uco.ucobet.generales.crosscutting.exception.UcobetException;
 import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.service.MessageCatalogService;
 import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.response.CityResponse;
 
-import co.edu.uco.ucobet.generales.application.secondaryports.mapper.CityEntityMapper;
 import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
@@ -16,8 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
 
 @RestController
 @RequestMapping("/general/api/v1/cities")
