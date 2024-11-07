@@ -69,16 +69,9 @@ public class RegisterNewCityController {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
 
-        var cities = cityRepository.findAll()
-                .stream()
-                .map(CityEntityMapper.INSTANCE::toDomain)
-                .map(cityDomain -> new RegisterNewCityDTO(cityDomain.getState().getId(), cityDomain.getName()))
-                .collect(Collectors.toList());
-
+        var cities = retrieveCities.getAllCities();
         return new ResponseEntity<>(cities, HttpStatus.OK);
-
     }
-
     private boolean isRequestFromPort8080(HttpServletRequest request) {
         return "8080".equals(request.getHeader("X-Forwarded-Port"));
     }
