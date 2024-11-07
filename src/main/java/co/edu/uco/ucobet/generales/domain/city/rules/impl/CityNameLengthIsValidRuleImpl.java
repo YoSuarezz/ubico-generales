@@ -12,7 +12,7 @@ public class CityNameLengthIsValidRuleImpl implements CityNameLenghtIsValidRule 
 	private static final int MAX_NAME_LENGTH = 100;
 	private final MessageCatalogService messageCatalogService;
 
-    public CityNameLengthIsValidRuleImpl(MessageCatalogService messageCatalogService) {
+    public CityNameLengthIsValidRuleImpl(final MessageCatalogService messageCatalogService) {
         this.messageCatalogService = messageCatalogService;
     }
 

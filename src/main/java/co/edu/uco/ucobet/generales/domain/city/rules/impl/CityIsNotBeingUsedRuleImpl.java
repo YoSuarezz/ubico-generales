@@ -13,7 +13,7 @@ public class CityIsNotBeingUsedRuleImpl implements CityIsNotBeingUsedRule{
 	private CityRepository cityRepository;
 	private final MessageCatalogService messageCatalogService;
 
-	public CityIsNotBeingUsedRuleImpl(final CityRepository cityRepository, MessageCatalogService messageCatalogService) {
+	public CityIsNotBeingUsedRuleImpl(final CityRepository cityRepository,final MessageCatalogService messageCatalogService) {
 		this.cityRepository = cityRepository;
         this.messageCatalogService = messageCatalogService;
     }

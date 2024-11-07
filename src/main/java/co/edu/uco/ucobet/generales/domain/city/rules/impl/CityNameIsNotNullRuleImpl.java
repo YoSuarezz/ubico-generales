@@ -12,7 +12,7 @@ public class CityNameIsNotNullRuleImpl implements CityNameIsNotNullRule {
 
 	private final MessageCatalogService messageCatalogService;
 
-    public CityNameIsNotNullRuleImpl(MessageCatalogService messageCatalogService) {
+    public CityNameIsNotNullRuleImpl(final MessageCatalogService messageCatalogService) {
         this.messageCatalogService = messageCatalogService;
     }
 
