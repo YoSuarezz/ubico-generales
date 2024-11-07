@@ -1,6 +1,7 @@
 package co.edu.uco.ucobet.generales.domain.city.exceptions;
 
 import co.edu.uco.ucobet.generales.crosscutting.exception.RuleUcobetException;
+import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.service.MessageCatalogService;
 
 public class CityIdIsNullException extends RuleUcobetException{
 
@@ -11,8 +12,8 @@ public class CityIdIsNullException extends RuleUcobetException{
 
     }
 
-    public static final CityIdIsNullException create() {
-        var userMessage = "El Id de la ciudad no puede ser Nulo";
+    public static final CityIdIsNullException create(MessageCatalogService messageCatalogService) {
+        var userMessage = messageCatalogService.getMessageOrDefault("CityIdIsNotNullException");
         return new CityIdIsNullException(userMessage);
     }
 

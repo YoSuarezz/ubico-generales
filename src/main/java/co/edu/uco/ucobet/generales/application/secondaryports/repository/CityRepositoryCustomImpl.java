@@ -5,6 +5,8 @@ import co.edu.uco.ucobet.generales.crosscutting.exception.RepositoryUcobetExcept
 import co.edu.uco.ucobet.generales.crosscutting.helpers.ObjectHelper;
 import co.edu.uco.ucobet.generales.crosscutting.helpers.TextHelper;
 import co.edu.uco.ucobet.generales.crosscutting.helpers.UUIDHelper;
+
+import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.service.MessageCatalogService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.Predicate;
 import java.util.ArrayList;
@@ -13,10 +15,12 @@ import java.util.UUID;
 
 public class CityRepositoryCustomImpl implements CityRepositoryCustom {
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
+    private final MessageCatalogService messageCatalogService;
 
-    public CityRepositoryCustomImpl(final EntityManager entityManager) {
+    public CityRepositoryCustomImpl(final EntityManager entityManager, final MessageCatalogService messageCatalogService) {
         this.entityManager = entityManager;
+        this.messageCatalogService = messageCatalogService;
     }
 
     @Override
@@ -26,7 +30,7 @@ public class CityRepositoryCustomImpl implements CityRepositoryCustom {
             var query = criteriaBuilder.createQuery(CityEntity.class);
             var result = query.from(CityEntity.class);
 
-            var predicates = new ArrayList<>();
+            var predicates = new ArrayList<Predicate>();
 
             if (!ObjectHelper.isNull(filter)) {
                 if (!UUIDHelper.isDefault(filter.getId())) {
@@ -46,7 +50,8 @@ public class CityRepositoryCustomImpl implements CityRepositoryCustom {
             return entityManager.createQuery(query).getResultList();
 
         } catch (final Exception exception) {
-            throw RepositoryUcobetException.create(null, null, exception);
+            var usermessage = messageCatalogService.getMessageOrDefault("CityFindByFilterError");
+            throw RepositoryUcobetException.create(usermessage, null, exception);
         }
     }
 
@@ -64,8 +69,8 @@ public class CityRepositoryCustomImpl implements CityRepositoryCustom {
             return count > 0;
 
         } catch (final Exception exception) {
-            throw RepositoryUcobetException.create("Error al verificar si la ciudad está siendo utilizada", null,
-                    exception);
+            var usermessage = messageCatalogService.getMessageOrDefault("ErrorCheckingCityIsBeingUsed");
+            throw RepositoryUcobetException.create(usermessage, null, exception);
         }
     }
 }
