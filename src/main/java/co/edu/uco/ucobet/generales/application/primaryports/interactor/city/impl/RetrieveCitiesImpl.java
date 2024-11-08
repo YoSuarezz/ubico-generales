@@ -7,7 +7,6 @@ import co.edu.uco.ucobet.generales.application.secondaryports.repository.CityRep
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class RetrieveCitiesImpl implements RetrieveCities {
@@ -23,7 +22,6 @@ public class RetrieveCitiesImpl implements RetrieveCities {
         return cityRepository.findAll()
                 .stream()
                 .map(CityEntityMapper.INSTANCE::toDomain)
-                .map(cityDomain -> new RegisterNewCityDTO(cityDomain.getState().getId(), cityDomain.getName()))
-                .collect(Collectors.toList());
+                .map(cityDomain -> new RegisterNewCityDTO(cityDomain.getState().getId(), cityDomain.getName())).toList();
     }
 }

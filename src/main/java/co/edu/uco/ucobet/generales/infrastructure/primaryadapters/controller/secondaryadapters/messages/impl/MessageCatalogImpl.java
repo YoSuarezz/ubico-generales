@@ -1,18 +1,18 @@
-package co.edu.uco.ucobet.generales.application.secondaryports.messages.impl;
+package co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.secondaryadapters.messages.impl;
 
-import co.edu.uco.ucobet.generales.application.secondaryports.messages.MessageCatalogInterface;
+import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.secondaryadapters.messages.MessageCatalog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MessageCatalog implements MessageCatalogInterface {
+public class MessageCatalogImpl implements MessageCatalog {
 
     private final StringRedisTemplate redisTemplate;
     private static final String FALLBACK_MESSAGE = "Mensaje no encontrado en Redis o revise la conexion.";
 
     @Autowired
-    public MessageCatalog(StringRedisTemplate redisTemplate) {
+    public MessageCatalogImpl(StringRedisTemplate redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
 

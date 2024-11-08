@@ -1,6 +1,6 @@
 package co.edu.uco.ucobet.generales.application.usecase.city.impl;
 
-import co.edu.uco.ucobet.generales.application.secondaryports.notification.NotificationInteractor;
+import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.secondaryadapters.notification.NotificationInteractor;
 import co.edu.uco.ucobet.generales.application.secondaryports.entity.CityEntity;
 import co.edu.uco.ucobet.generales.application.secondaryports.mapper.StateEntityMapper;
 import co.edu.uco.ucobet.generales.application.secondaryports.repository.CityRepository;
@@ -8,7 +8,7 @@ import co.edu.uco.ucobet.generales.application.usecase.city.RegisterNewCity;
 import co.edu.uco.ucobet.generales.application.usecase.city.RegisterNewCityRulesValidator;
 import co.edu.uco.ucobet.generales.crosscutting.exception.RepositoryUcobetException;
 import co.edu.uco.ucobet.generales.domain.city.CityDomain;
-import co.edu.uco.ucobet.generales.application.secondaryports.messages.MessageCatalogInterface;
+import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.secondaryadapters.messages.MessageCatalog;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,12 +17,12 @@ public final class RegisterNewCityImpl implements RegisterNewCity {
     private final CityRepository cityRepository;
     private final RegisterNewCityRulesValidator registerNewCityRulesValidator;
     private final NotificationInteractor notificationInteractor;
-    private final MessageCatalogInterface messageCatalog;
+    private final MessageCatalog messageCatalog;
 
     public RegisterNewCityImpl(final CityRepository cityRepository,
                                final RegisterNewCityRulesValidator registerNewCityRulesValidator,
                                final NotificationInteractor notificationInteractor,
-                               final MessageCatalogInterface messageCatalog) {
+                               final MessageCatalog messageCatalog) {
         this.cityRepository = cityRepository;
         this.registerNewCityRulesValidator = registerNewCityRulesValidator;
         this.notificationInteractor = notificationInteractor;
@@ -55,7 +55,6 @@ public final class RegisterNewCityImpl implements RegisterNewCity {
         notificationInteractor.notifySuccess(subjectmessage, message);
 
         //Notificar al administrador sobre la creacion de la nueva ciudad
-        //TODO: ¿Cómo? Notification Building Block
 
         //Tenga en cuenta que:
         // 1. El correo del administrador está en un lugar parametrizado (Parameters Building Block)

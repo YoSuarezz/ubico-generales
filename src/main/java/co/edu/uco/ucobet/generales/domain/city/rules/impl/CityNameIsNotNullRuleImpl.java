@@ -1,6 +1,6 @@
 package co.edu.uco.ucobet.generales.domain.city.rules.impl;
 
-import co.edu.uco.ucobet.generales.application.secondaryports.messages.MessageCatalogInterface;
+import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.secondaryadapters.messages.MessageCatalog;
 import co.edu.uco.ucobet.generales.crosscutting.helpers.TextHelper;
 import co.edu.uco.ucobet.generales.domain.city.exceptions.CityNameIsNullException;
 import co.edu.uco.ucobet.generales.domain.city.rules.CityNameIsNotNullRule;
@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 public class CityNameIsNotNullRuleImpl implements CityNameIsNotNullRule {
 
 
-	private final MessageCatalogInterface messageCatalog;
+	private final MessageCatalog messageCatalog;
 
-    public CityNameIsNotNullRuleImpl(MessageCatalogInterface messageCatalog) {
+    public CityNameIsNotNullRuleImpl(MessageCatalog messageCatalog) {
         this.messageCatalog = messageCatalog;
     }
 

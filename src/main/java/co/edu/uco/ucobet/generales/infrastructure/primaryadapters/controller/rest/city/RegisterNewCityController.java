@@ -5,7 +5,7 @@ import co.edu.uco.ucobet.generales.application.primaryports.interactor.city.Regi
 import co.edu.uco.ucobet.generales.application.primaryports.interactor.city.RetrieveCities;
 import co.edu.uco.ucobet.generales.application.secondaryports.repository.CityRepository;
 import co.edu.uco.ucobet.generales.crosscutting.exception.UcobetException;
-import co.edu.uco.ucobet.generales.application.secondaryports.messages.MessageCatalogInterface;
+import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.secondaryadapters.messages.MessageCatalog;
 import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.response.CityResponse;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,10 +23,10 @@ public class RegisterNewCityController {
 
     private final RegisterNewCityInteractor registerNewCityInteractor;
     private final RetrieveCities retrieveCities;
-    private final MessageCatalogInterface messageCatalog;
+    private final MessageCatalog messageCatalog;
     private final CityRepository cityRepository;
 
-    public RegisterNewCityController(RegisterNewCityInteractor registerNewCityInteractor, RetrieveCities retrieveCities, MessageCatalogInterface messageCatalog, CityRepository cityRepository) {
+    public RegisterNewCityController(RegisterNewCityInteractor registerNewCityInteractor, RetrieveCities retrieveCities, MessageCatalog messageCatalog, CityRepository cityRepository) {
         this.registerNewCityInteractor = registerNewCityInteractor;
         this.retrieveCities = retrieveCities;
         this.messageCatalog = messageCatalog;

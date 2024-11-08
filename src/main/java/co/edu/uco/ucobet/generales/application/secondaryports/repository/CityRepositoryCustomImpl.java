@@ -6,7 +6,7 @@ import co.edu.uco.ucobet.generales.crosscutting.helpers.ObjectHelper;
 import co.edu.uco.ucobet.generales.crosscutting.helpers.TextHelper;
 import co.edu.uco.ucobet.generales.crosscutting.helpers.UUIDHelper;
 
-import co.edu.uco.ucobet.generales.application.secondaryports.messages.MessageCatalogInterface;
+import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.secondaryadapters.messages.MessageCatalog;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.Predicate;
 import java.util.ArrayList;
@@ -16,9 +16,9 @@ import java.util.UUID;
 public class CityRepositoryCustomImpl implements CityRepositoryCustom {
 
     private final EntityManager entityManager;
-    private final MessageCatalogInterface messageCatalog;
+    private final MessageCatalog messageCatalog;
 
-    public CityRepositoryCustomImpl(final EntityManager entityManager, final MessageCatalogInterface messageCatalog) {
+    public CityRepositoryCustomImpl(final EntityManager entityManager, final MessageCatalog messageCatalog) {
         this.entityManager = entityManager;
         this.messageCatalog = messageCatalog;
     }

@@ -1,6 +1,6 @@
 package co.edu.uco.ucobet.generales.domain.city.rules.impl;
 
-import co.edu.uco.ucobet.generales.application.secondaryports.messages.MessageCatalogInterface;
+import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.secondaryadapters.messages.MessageCatalog;
 import co.edu.uco.ucobet.generales.crosscutting.helpers.TextHelper;
 import co.edu.uco.ucobet.generales.domain.city.exceptions.CityNameIsEmptyException;
 import co.edu.uco.ucobet.generales.domain.city.rules.CityNameIsNotEmptyRule;
@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class CityNameIsNotEmptyRuleImpl implements CityNameIsNotEmptyRule {
 
-	private final MessageCatalogInterface messageCatalog;
+	private final MessageCatalog messageCatalog;
 
-    public CityNameIsNotEmptyRuleImpl(final MessageCatalogInterface messageCatalog) {
+    public CityNameIsNotEmptyRuleImpl(final MessageCatalog messageCatalog) {
         this.messageCatalog = messageCatalog;
     }
 

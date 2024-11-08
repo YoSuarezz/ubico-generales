@@ -1,6 +1,6 @@
 package co.edu.uco.ucobet.generales.domain.city.rules.impl;
 
-import co.edu.uco.ucobet.generales.application.secondaryports.messages.MessageCatalogInterface;
+import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.secondaryadapters.messages.MessageCatalog;
 import co.edu.uco.ucobet.generales.domain.city.exceptions.CityNameLenghtIsNotValidException;
 import co.edu.uco.ucobet.generales.domain.city.rules.CityNameLenghtIsValidRule;
 import org.springframework.stereotype.Service;
@@ -10,9 +10,9 @@ public class CityNameLengthIsValidRuleImpl implements CityNameLenghtIsValidRule 
 
 	private static final int MIN_NAME_LENGTH = 3;
 	private static final int MAX_NAME_LENGTH = 100;
-	private final MessageCatalogInterface messageCatalog;
+	private final MessageCatalog messageCatalog;
 
-    public CityNameLengthIsValidRuleImpl(MessageCatalogInterface messageCatalog) {
+    public CityNameLengthIsValidRuleImpl(MessageCatalog messageCatalog) {
         this.messageCatalog = messageCatalog;
     }
 
