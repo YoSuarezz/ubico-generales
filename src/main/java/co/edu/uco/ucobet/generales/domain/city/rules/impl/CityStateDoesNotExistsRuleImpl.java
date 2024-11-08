@@ -1,6 +1,6 @@
 package co.edu.uco.ucobet.generales.domain.city.rules.impl;
 
-import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.service.MessageCatalogService;
+import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.service.MessageCatalogInterface;
 import co.edu.uco.ucobet.generales.domain.city.exceptions.CityStateDoesNotExistsException;
 import co.edu.uco.ucobet.generales.domain.city.rules.CityStateDoesNotExistsRule;
 import co.edu.uco.ucobet.generales.domain.state.StateDomain;
@@ -11,12 +11,12 @@ import org.springframework.stereotype.Service;
 public class CityStateDoesNotExistsRuleImpl implements CityStateDoesNotExistsRule {
 
     private final StateRepository stateRepository;
-    private final MessageCatalogService messageCatalogService;
+    private final MessageCatalogInterface messageCatalog;
 
 
-    public CityStateDoesNotExistsRuleImpl(final StateRepository stateRepository,final MessageCatalogService messageCatalogService) {
+    public CityStateDoesNotExistsRuleImpl(final StateRepository stateRepository,final MessageCatalogInterface messageCatalog) {
         this.stateRepository = stateRepository;
-        this.messageCatalogService = messageCatalogService;
+        this.messageCatalog = messageCatalog;
     }
 
 
@@ -25,7 +25,7 @@ public class CityStateDoesNotExistsRuleImpl implements CityStateDoesNotExistsRul
     public void validate(StateDomain stateDomain) {
         boolean exists = stateRepository.existsById(stateDomain.getId());
         if (!exists) {
-            throw CityStateDoesNotExistsException.create(messageCatalogService);
+            throw CityStateDoesNotExistsException.create(messageCatalog);
         }
     }
 }

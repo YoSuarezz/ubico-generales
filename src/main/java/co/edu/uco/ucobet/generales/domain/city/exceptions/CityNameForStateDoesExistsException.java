@@ -1,7 +1,7 @@
 package co.edu.uco.ucobet.generales.domain.city.exceptions;
 
 import co.edu.uco.ucobet.generales.crosscutting.exception.RuleUcobetException;
-import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.service.MessageCatalogService;
+import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.service.MessageCatalogInterface;
 
 public class CityNameForStateDoesExistsException extends RuleUcobetException {
 
@@ -11,8 +11,8 @@ public class CityNameForStateDoesExistsException extends RuleUcobetException {
         super(userMessage, userMessage, new Exception());
     }
 
-    public static final CityNameForStateDoesExistsException create(MessageCatalogService messageCatalogService) {
-        var userMessage = messageCatalogService.getMessageOrDefault("CityNameForStateDoesExistsException");
+    public static final CityNameForStateDoesExistsException create(MessageCatalogInterface messageCatalog) {
+        var userMessage = messageCatalog.getMessageOrDefault("CityNameForStateDoesExistsException");
         return new CityNameForStateDoesExistsException(userMessage);
     }
 

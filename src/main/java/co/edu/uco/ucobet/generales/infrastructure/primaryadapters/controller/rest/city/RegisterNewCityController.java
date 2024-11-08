@@ -5,7 +5,7 @@ import co.edu.uco.ucobet.generales.application.primaryports.interactor.city.Regi
 import co.edu.uco.ucobet.generales.application.primaryports.interactor.city.RetrieveCities;
 import co.edu.uco.ucobet.generales.application.secondaryports.repository.CityRepository;
 import co.edu.uco.ucobet.generales.crosscutting.exception.UcobetException;
-import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.service.MessageCatalogService;
+import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.service.MessageCatalogInterface;
 import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.response.CityResponse;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,13 +23,13 @@ public class RegisterNewCityController {
 
     private final RegisterNewCityInteractor registerNewCityInteractor;
     private final RetrieveCities retrieveCities;
-    private final MessageCatalogService messageCatalogService;
+    private final MessageCatalogInterface messageCatalog;
     private final CityRepository cityRepository;
 
-    public RegisterNewCityController(RegisterNewCityInteractor registerNewCityInteractor, RetrieveCities retrieveCities, MessageCatalogService messageCatalogService, CityRepository cityRepository) {
+    public RegisterNewCityController(RegisterNewCityInteractor registerNewCityInteractor, RetrieveCities retrieveCities, MessageCatalogInterface messageCatalog, CityRepository cityRepository) {
         this.registerNewCityInteractor = registerNewCityInteractor;
         this.retrieveCities = retrieveCities;
-        this.messageCatalogService = messageCatalogService;
+        this.messageCatalog = messageCatalog;
         this.cityRepository = cityRepository;
     }
 
@@ -44,7 +44,7 @@ public class RegisterNewCityController {
 
         try {
             registerNewCityInteractor.execute(registerNewCityDTO);
-            var mensajeUsuario = messageCatalogService.getMessageOrDefault("CityRegisteredSuccess");
+            var mensajeUsuario = messageCatalog.getMessageOrDefault("CityRegisteredSuccess");
             cityResponse.getMensajes().add(mensajeUsuario);
         } catch (final UcobetException excepcion) {
             httpStatusCode = HttpStatus.BAD_REQUEST;
@@ -52,7 +52,7 @@ public class RegisterNewCityController {
             excepcion.printStackTrace();
         } catch (final Exception excepcion) {
             httpStatusCode = HttpStatus.INTERNAL_SERVER_ERROR;
-            var mensajeUsuario = messageCatalogService.getMessageOrDefault("CityRegistrationFailed");
+            var mensajeUsuario = messageCatalog.getMessageOrDefault("CityRegistrationFailed");
             cityResponse.getMensajes().add(mensajeUsuario);
             excepcion.printStackTrace();
         }
