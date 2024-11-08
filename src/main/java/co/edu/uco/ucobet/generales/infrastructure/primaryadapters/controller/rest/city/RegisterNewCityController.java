@@ -5,7 +5,7 @@ import co.edu.uco.ucobet.generales.application.primaryports.interactor.city.Regi
 import co.edu.uco.ucobet.generales.application.primaryports.interactor.city.RetrieveCities;
 import co.edu.uco.ucobet.generales.application.secondaryports.repository.CityRepository;
 import co.edu.uco.ucobet.generales.crosscutting.exception.UcobetException;
-import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.service.MessageCatalogInterface;
+import co.edu.uco.ucobet.generales.application.secondaryports.messages.MessageCatalogInterface;
 import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.response.CityResponse;
 
 import jakarta.servlet.http.HttpServletRequest;

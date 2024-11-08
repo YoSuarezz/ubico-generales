@@ -1,6 +1,6 @@
-package co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.service.impl;
+package co.edu.uco.ucobet.generales.application.secondaryports.messages.impl;
 
-import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.service.MessageCatalogInterface;
+import co.edu.uco.ucobet.generales.application.secondaryports.messages.MessageCatalogInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;

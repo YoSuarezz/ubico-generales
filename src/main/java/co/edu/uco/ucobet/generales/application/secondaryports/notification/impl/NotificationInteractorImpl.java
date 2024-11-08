@@ -1,6 +1,6 @@
-package co.edu.uco.ucobet.generales.application.primaryports.interactor.city.impl;
+package co.edu.uco.ucobet.generales.application.secondaryports.notification.impl;
 
-import co.edu.uco.ucobet.generales.application.primaryports.interactor.city.NotificationInteractor;
+import co.edu.uco.ucobet.generales.application.secondaryports.notification.NotificationInteractor;
 import com.mailersend.sdk.MailerSend;
 import com.mailersend.sdk.MailerSendResponse;
 import com.mailersend.sdk.emails.Email;
