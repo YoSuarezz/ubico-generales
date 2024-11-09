@@ -1,7 +1,7 @@
 package co.edu.uco.ucobet.generales.domain.city.exceptions;
 
 import co.edu.uco.ucobet.generales.crosscutting.exception.RuleUcobetException;
-import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.service.MessageCatalogService;
+import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.messages.MessageCatalog;
 
 public class CityNameFormatIsNotValidException extends RuleUcobetException{
 
@@ -12,8 +12,8 @@ public class CityNameFormatIsNotValidException extends RuleUcobetException{
 
     }
 
-    public static final CityNameFormatIsNotValidException create(MessageCatalogService messageCatalogService) {
-        var userMessage = messageCatalogService.getMessageOrDefault("CityNameFormatIsNotValidException");
+    public static final CityNameFormatIsNotValidException create(MessageCatalog messageCatalog) {
+        var userMessage = messageCatalog.getMessageOrDefault("CityNameFormatIsNotValidException");
         return new CityNameFormatIsNotValidException(userMessage);
     }
 

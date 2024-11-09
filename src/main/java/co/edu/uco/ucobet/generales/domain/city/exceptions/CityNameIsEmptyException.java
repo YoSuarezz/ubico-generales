@@ -1,7 +1,7 @@
 package co.edu.uco.ucobet.generales.domain.city.exceptions;
 
 import co.edu.uco.ucobet.generales.crosscutting.exception.RuleUcobetException;
-import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.service.MessageCatalogService;
+import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.messages.MessageCatalog;
 
 public class CityNameIsEmptyException extends RuleUcobetException{
 
@@ -12,8 +12,8 @@ public class CityNameIsEmptyException extends RuleUcobetException{
 
     }
 
-    public static final CityNameIsEmptyException create(MessageCatalogService messageCatalogService) {
-        var userMessage = messageCatalogService.getMessageOrDefault("CityNameIsEmptyException");
+    public static final CityNameIsEmptyException create(MessageCatalog messageCatalog) {
+        var userMessage = messageCatalog.getMessageOrDefault("CityNameIsEmptyException");
         return new CityNameIsEmptyException(userMessage);
     }
 

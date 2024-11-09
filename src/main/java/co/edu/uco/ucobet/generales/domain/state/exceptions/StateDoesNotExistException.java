@@ -1,6 +1,7 @@
 package co.edu.uco.ucobet.generales.domain.state.exceptions;
 
 import co.edu.uco.ucobet.generales.crosscutting.exception.RuleUcobetException;
+import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.messages.MessageCatalog;
 
 public class StateDoesNotExistException extends RuleUcobetException{
 
@@ -8,11 +9,10 @@ public class StateDoesNotExistException extends RuleUcobetException{
 
 	private StateDoesNotExistException(final String userMessage) {
 		super(userMessage, userMessage, new Exception());
-
 	}
 
-	public static final StateDoesNotExistException create() {
-		var userMessage = "El estado no existe.";
+	public static StateDoesNotExistException create(MessageCatalog messageCatalog) {
+		var userMessage = messageCatalog.getMessageOrDefault("StateDoesNotExistException");
 		return new StateDoesNotExistException(userMessage);
 	}
 

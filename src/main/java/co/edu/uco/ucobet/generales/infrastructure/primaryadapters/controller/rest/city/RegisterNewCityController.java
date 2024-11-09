@@ -3,9 +3,8 @@ package co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.re
 import co.edu.uco.ucobet.generales.application.primaryports.dto.RegisterNewCityDTO;
 import co.edu.uco.ucobet.generales.application.primaryports.interactor.city.RegisterNewCityInteractor;
 import co.edu.uco.ucobet.generales.application.primaryports.interactor.city.RetrieveCities;
-import co.edu.uco.ucobet.generales.application.secondaryports.repository.CityRepository;
 import co.edu.uco.ucobet.generales.crosscutting.exception.UcobetException;
-import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.service.MessageCatalogService;
+import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.messages.MessageCatalog;
 import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.response.CityResponse;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,19 +17,17 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/general/api/v1/cities")
-@CrossOrigin(origins = "http://localhost:8080", methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(origins = "https://localhost:8080", methods = {RequestMethod.GET, RequestMethod.POST})
 public class RegisterNewCityController {
 
     private final RegisterNewCityInteractor registerNewCityInteractor;
     private final RetrieveCities retrieveCities;
-    private final MessageCatalogService messageCatalogService;
-    private final CityRepository cityRepository;
+    private final MessageCatalog messageCatalog;
 
-    public RegisterNewCityController(RegisterNewCityInteractor registerNewCityInteractor, RetrieveCities retrieveCities, MessageCatalogService messageCatalogService, CityRepository cityRepository) {
+    public RegisterNewCityController(RegisterNewCityInteractor registerNewCityInteractor, RetrieveCities retrieveCities, MessageCatalog messageCatalog) {
         this.registerNewCityInteractor = registerNewCityInteractor;
         this.retrieveCities = retrieveCities;
-        this.messageCatalogService = messageCatalogService;
-        this.cityRepository = cityRepository;
+        this.messageCatalog = messageCatalog;
     }
 
     @PostMapping("/crearciudad")
@@ -44,7 +41,7 @@ public class RegisterNewCityController {
 
         try {
             registerNewCityInteractor.execute(registerNewCityDTO);
-            var mensajeUsuario = messageCatalogService.getMessageOrDefault("CityRegisteredSuccess");
+            var mensajeUsuario = messageCatalog.getMessageOrDefault("CityRegisteredSuccess");
             cityResponse.getMensajes().add(mensajeUsuario);
         } catch (final UcobetException excepcion) {
             httpStatusCode = HttpStatus.BAD_REQUEST;
@@ -52,7 +49,7 @@ public class RegisterNewCityController {
             excepcion.printStackTrace();
         } catch (final Exception excepcion) {
             httpStatusCode = HttpStatus.INTERNAL_SERVER_ERROR;
-            var mensajeUsuario = messageCatalogService.getMessageOrDefault("CityRegistrationFailed");
+            var mensajeUsuario = messageCatalog.getMessageOrDefault("CityRegistrationFailed");
             cityResponse.getMensajes().add(mensajeUsuario);
             excepcion.printStackTrace();
         }

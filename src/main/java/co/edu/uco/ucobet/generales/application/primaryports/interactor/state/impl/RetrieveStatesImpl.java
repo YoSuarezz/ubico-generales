@@ -8,7 +8,6 @@ import co.edu.uco.ucobet.generales.application.secondaryports.repository.StateRe
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class RetrieveStatesImpl implements RetrieveStates {
@@ -26,6 +25,6 @@ public class RetrieveStatesImpl implements RetrieveStates {
                 .stream()
                 .map(StateEntityMapper.INSTANCE::toDomain)
                 .map(stateDomain -> new StateDTO(stateDomain.getId(), stateDomain.getName(), new CountryDTO(stateDomain.getCountry().getId(), stateDomain.getCountry().getName())))
-                .collect(Collectors.toList());
+                .toList();
     }
 }
