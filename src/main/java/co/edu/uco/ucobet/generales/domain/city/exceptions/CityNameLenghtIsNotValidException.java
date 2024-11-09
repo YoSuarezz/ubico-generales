@@ -1,7 +1,7 @@
 package co.edu.uco.ucobet.generales.domain.city.exceptions;
 
 import co.edu.uco.ucobet.generales.crosscutting.exception.RuleUcobetException;
-import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.secondaryadapters.messages.MessageCatalog;
+import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.messages.MessageCatalog;
 
 public class CityNameLenghtIsNotValidException extends RuleUcobetException{
 

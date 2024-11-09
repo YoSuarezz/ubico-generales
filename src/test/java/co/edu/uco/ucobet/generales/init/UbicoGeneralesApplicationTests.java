@@ -8,7 +8,7 @@ class UbicoGeneralesApplicationTests {
 
     @Test
     void contextLoads() {
-        // TODO document why this method is empty
+        // implementar pruebas unitarias
     }
 
 }

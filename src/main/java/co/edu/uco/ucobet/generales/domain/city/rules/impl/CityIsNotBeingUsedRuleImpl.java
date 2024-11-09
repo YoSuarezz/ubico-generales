@@ -1,7 +1,7 @@
 package co.edu.uco.ucobet.generales.domain.city.rules.impl;
 
 import co.edu.uco.ucobet.generales.application.secondaryports.repository.CityRepository;
-import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.secondaryadapters.messages.MessageCatalog;
+import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.messages.MessageCatalog;
 import co.edu.uco.ucobet.generales.domain.city.CityDomain;
 import co.edu.uco.ucobet.generales.domain.city.exceptions.CityIsBeingUsedException;
 import co.edu.uco.ucobet.generales.domain.city.rules.CityIsNotBeingUsedRule;

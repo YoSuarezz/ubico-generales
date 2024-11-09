@@ -1,6 +1,6 @@
-package co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.secondaryadapters.notification.impl;
+package co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.notification.impl;
 
-import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.secondaryadapters.notification.NotificationInteractor;
+import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.notification.NotificationInteractor;
 import com.mailersend.sdk.MailerSend;
 import com.mailersend.sdk.MailerSendResponse;
 import com.mailersend.sdk.emails.Email;

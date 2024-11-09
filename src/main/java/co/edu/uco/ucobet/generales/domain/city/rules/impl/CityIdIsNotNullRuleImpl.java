@@ -2,7 +2,7 @@ package co.edu.uco.ucobet.generales.domain.city.rules.impl;
 
 import java.util.UUID;
 
-import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.secondaryadapters.messages.MessageCatalog;
+import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.messages.MessageCatalog;
 import co.edu.uco.ucobet.generales.crosscutting.helpers.ObjectHelper;
 import co.edu.uco.ucobet.generales.domain.city.exceptions.CityIdIsNullException;
 import co.edu.uco.ucobet.generales.domain.city.rules.CityIdIsNotNullRule;
