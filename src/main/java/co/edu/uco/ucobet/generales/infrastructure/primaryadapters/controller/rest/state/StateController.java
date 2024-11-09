@@ -1,6 +1,8 @@
 package co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.rest.state;
 
+import co.edu.uco.ucobet.generales.application.primaryports.dto.CountryDTO;
 import co.edu.uco.ucobet.generales.application.primaryports.dto.StateDTO;
+import co.edu.uco.ucobet.generales.application.secondaryports.mapper.StateEntityMapper;
 import co.edu.uco.ucobet.generales.application.secondaryports.repository.StateRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import co.edu.uco.ucobet.generales.application.primaryports.interactor.state.RetrieveStates;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/general/api/v1/states")
@@ -24,16 +27,13 @@ public class StateController {
     }
 
     @GetMapping
-    public ResponseEntity<List<StateDTO>> obtenerStates(HttpServletRequest request) {
-        if (!isRequestFromPort8080(request)) {
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-        }
+    public ResponseEntity<List<StateDTO>> obtenerStates() {
+        var states = stateRepository.findAll()
+                .stream()
+                .map(StateEntityMapper.INSTANCE::toDomain)
+                .map(stateDomain -> new StateDTO(stateDomain.getId(), stateDomain.getName(), new CountryDTO(stateDomain.getCountry().getId(), stateDomain.getCountry().getName())))
+                .collect(Collectors.toList());
 
-        var states = retrieveStates.getAllStates();
         return new ResponseEntity<>(states, HttpStatus.OK);
-    }
-
-    private boolean isRequestFromPort8080(HttpServletRequest request) {
-        return "8080".equals(request.getHeader("X-Forwarded-Port"));
     }
 }

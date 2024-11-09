@@ -3,6 +3,7 @@ package co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.re
 import co.edu.uco.ucobet.generales.application.primaryports.dto.RegisterNewCityDTO;
 import co.edu.uco.ucobet.generales.application.primaryports.interactor.city.RegisterNewCityInteractor;
 import co.edu.uco.ucobet.generales.application.primaryports.interactor.city.RetrieveCities;
+import co.edu.uco.ucobet.generales.application.secondaryports.mapper.CityEntityMapper;
 import co.edu.uco.ucobet.generales.application.secondaryports.repository.CityRepository;
 import co.edu.uco.ucobet.generales.crosscutting.exception.UcobetException;
 import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.service.MessageCatalogService;
@@ -15,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/general/api/v1/cities")
@@ -34,17 +36,13 @@ public class RegisterNewCityController {
     }
 
     @PostMapping("/crearciudad")
-    public ResponseEntity<CityResponse> registrar(@RequestBody RegisterNewCityDTO registerNewCityDTO, HttpServletRequest request) {
-        if (!isRequestFromPort8080(request)) {
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-        }
-
+    public ResponseEntity<CityResponse> registrar(@RequestBody RegisterNewCityDTO registerNewCityDTO) {
         var httpStatusCode = HttpStatus.ACCEPTED;
         var cityResponse = new CityResponse();
 
         try {
             registerNewCityInteractor.execute(registerNewCityDTO);
-            var mensajeUsuario = messageCatalogService.getMessageOrDefault("CityRegisteredSuccess");
+            var mensajeUsuario = "La ciudad se ha registrado correctamente";
             cityResponse.getMensajes().add(mensajeUsuario);
         } catch (final UcobetException excepcion) {
             httpStatusCode = HttpStatus.BAD_REQUEST;
@@ -52,24 +50,22 @@ public class RegisterNewCityController {
             excepcion.printStackTrace();
         } catch (final Exception excepcion) {
             httpStatusCode = HttpStatus.INTERNAL_SERVER_ERROR;
-            var mensajeUsuario = messageCatalogService.getMessageOrDefault("CityRegistrationFailed");
+            var mensajeUsuario = "La ciudad no se ha podido registrar";
             cityResponse.getMensajes().add(mensajeUsuario);
             excepcion.printStackTrace();
         }
+
         return new ResponseEntity<>(cityResponse, httpStatusCode);
     }
 
     @GetMapping
+    public ResponseEntity<List<RegisterNewCityDTO>> obtenerCiudades() {
+        var cities = cityRepository.findAll()
+                .stream()
+                .map(CityEntityMapper.INSTANCE::toDomain)
+                .map(cityDomain -> new RegisterNewCityDTO(cityDomain.getState().getId(), cityDomain.getName()))
+                .collect(Collectors.toList());
 
-    public ResponseEntity<List<RegisterNewCityDTO>> obtenerCiudades(HttpServletRequest request) {
-        if (!isRequestFromPort8080(request)) {
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-        }
-
-        var cities = retrieveCities.getAllCities();
         return new ResponseEntity<>(cities, HttpStatus.OK);
-    }
-    private boolean isRequestFromPort8080(HttpServletRequest request) {
-        return "8080".equals(request.getHeader("X-Forwarded-Port"));
     }
 }
