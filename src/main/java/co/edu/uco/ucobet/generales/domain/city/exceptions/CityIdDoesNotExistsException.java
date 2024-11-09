@@ -5,7 +5,7 @@ import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.messages.Mes
 
 public class CityIdDoesNotExistsException extends RuleUcobetException {
 
-    private static final long SERIAL_VERSION_UID = 1L;
+    private static final long serialVersionUID = 1L;
 
     public CityIdDoesNotExistsException(final String userMessage) {
         super(userMessage, userMessage, new Exception());

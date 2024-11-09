@@ -1,16 +1,20 @@
 package co.edu.uco.ucobet.generales.domain.country;
 
-import co.edu.uco.ucobet.generales.domain.Domain;
-
 import java.util.UUID;
 
-public final class CountryDomain extends Domain {
+import co.edu.uco.ucobet.generales.domain.Domain;
+
+public class CountryDomain extends Domain {
 
     private String name;
 
-    public CountryDomain(UUID id) {
+    public CountryDomain(final UUID id,final String name) {
         super(id);
         setName(name);
+    }
+
+    public static final CountryDomain create(final UUID id,final String name) {
+        return new CountryDomain(id,name);
     }
 
     public final String getName() {
@@ -20,4 +24,5 @@ public final class CountryDomain extends Domain {
     private final void setName(String name) {
         this.name = name;
     }
+
 }

@@ -1,6 +1,8 @@
 package co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.messages.impl;
 
+import co.edu.uco.ucobet.generales.crosscutting.helpers.TextHelper;
 import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.messages.MessageCatalog;
+import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,6 @@ public class MessageCatalogImpl implements MessageCatalog {
     @Override
     public String getMessageOrDefault(String key) {
         String message = redisTemplate.opsForValue().get(key);
-        return (message != null) ? message : FALLBACK_MESSAGE;
+        return (!Objects.equals(message, TextHelper.EMPTY)) ? message : FALLBACK_MESSAGE;
     }
 }

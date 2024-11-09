@@ -2,6 +2,7 @@ package co.edu.uco.ucobet.generales.application.secondaryports.repository;
 
 import co.edu.uco.ucobet.generales.application.secondaryports.entity.CityEntity;
 import co.edu.uco.ucobet.generales.crosscutting.exception.RepositoryUcobetException;
+import co.edu.uco.ucobet.generales.crosscutting.helpers.NumericHelper;
 import co.edu.uco.ucobet.generales.crosscutting.helpers.ObjectHelper;
 import co.edu.uco.ucobet.generales.crosscutting.helpers.TextHelper;
 import co.edu.uco.ucobet.generales.crosscutting.helpers.UUIDHelper;
@@ -51,7 +52,8 @@ public class CityRepositoryCustomImpl implements CityRepositoryCustom {
 
         } catch (final Exception exception) {
             var usermessage = messageCatalog.getMessageOrDefault("CityFindByFilterError");
-            throw RepositoryUcobetException.create(usermessage, null, exception);
+            var technicalmessage = messageCatalog.getMessageOrDefault("CityFindByFilterError");
+            throw RepositoryUcobetException.create(usermessage, technicalmessage, exception);
         }
     }
 
@@ -66,11 +68,12 @@ public class CityRepositoryCustomImpl implements CityRepositoryCustom {
 
             Long count = entityManager.createQuery(query).getSingleResult();
 
-            return count > 0;
+            return count > NumericHelper.ZERO;
 
         } catch (final Exception exception) {
             var usermessage = messageCatalog.getMessageOrDefault("ErrorCheckingCityIsBeingUsed");
-            throw RepositoryUcobetException.create(usermessage, null, exception);
+            var technicalmessage = messageCatalog.getMessageOrDefault("ErrorCheckingCityIsBeingUsed");
+            throw RepositoryUcobetException.create(usermessage, technicalmessage, exception);
         }
     }
 }

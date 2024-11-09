@@ -21,8 +21,6 @@ public class RegisterNewCityInteractorImpl implements RegisterNewCityInteractor 
 
     @Override
     public void execute(final RegisterNewCityDTO data) {
-        //Data mapper -> DTO -> Domain
-
         final var cityDomain= CityDTOMapper.INSTANCE.toDomain(data);
         registerNewCity.execute(cityDomain);
     }

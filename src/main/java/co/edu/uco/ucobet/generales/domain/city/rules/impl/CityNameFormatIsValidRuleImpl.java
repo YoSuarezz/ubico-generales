@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 @Service
 public class CityNameFormatIsValidRuleImpl implements CityNameFormatIsValidRule {
-	private static final Pattern VALID_CITY_NAME_PATTERN = Pattern.compile("^[a-zA-Z\\s]+$");
+	private static final Pattern VALID_CITY_NAME_PATTERN = Pattern.compile("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$");
 	private final MessageCatalog messageCatalog;
 
     public CityNameFormatIsValidRuleImpl(final MessageCatalog messageCatalog) {
