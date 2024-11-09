@@ -4,6 +4,7 @@ import co.edu.uco.ucobet.generales.application.primaryports.dto.RegisterNewCityD
 import co.edu.uco.ucobet.generales.application.primaryports.interactor.city.RegisterNewCityInteractor;
 import co.edu.uco.ucobet.generales.application.primaryports.interactor.city.RetrieveCities;
 import co.edu.uco.ucobet.generales.crosscutting.exception.UcobetException;
+import co.edu.uco.ucobet.generales.crosscutting.helpers.SanitizerHelper;
 import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.messages.MessageCatalog;
 import co.edu.uco.ucobet.generales.infrastructure.primaryadapters.controller.response.CityResponse;
 
@@ -23,11 +24,13 @@ public class RegisterNewCityController {
     private final RegisterNewCityInteractor registerNewCityInteractor;
     private final RetrieveCities retrieveCities;
     private final MessageCatalog messageCatalog;
+    private final SanitizerHelper sanitizerHelper;
 
-    public RegisterNewCityController(RegisterNewCityInteractor registerNewCityInteractor, RetrieveCities retrieveCities, MessageCatalog messageCatalog) {
+    public RegisterNewCityController(RegisterNewCityInteractor registerNewCityInteractor, RetrieveCities retrieveCities, MessageCatalog messageCatalog, SanitizerHelper sanitizerHelper) {
         this.registerNewCityInteractor = registerNewCityInteractor;
         this.retrieveCities = retrieveCities;
         this.messageCatalog = messageCatalog;
+        this.sanitizerHelper = sanitizerHelper;
     }
 
     @PostMapping("/crearciudad")
@@ -38,6 +41,8 @@ public class RegisterNewCityController {
 
         var httpStatusCode = HttpStatus.ACCEPTED;
         var cityResponse = new CityResponse();
+
+        registerNewCityDTO.setCityName(sanitizerHelper.sanitizeInput(registerNewCityDTO.getCity()));
 
         try {
             registerNewCityInteractor.execute(registerNewCityDTO);
