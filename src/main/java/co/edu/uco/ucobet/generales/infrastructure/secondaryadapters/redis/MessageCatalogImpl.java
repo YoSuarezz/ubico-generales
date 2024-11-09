@@ -1,7 +1,7 @@
-package co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.messages.impl;
+package co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.redis;
 
 import co.edu.uco.ucobet.generales.crosscutting.helpers.TextHelper;
-import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.messages.MessageCatalog;
+import co.edu.uco.ucobet.generales.application.secondaryports.redis.MessageCatalog;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;

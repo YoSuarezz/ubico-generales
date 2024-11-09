@@ -7,7 +7,7 @@ import co.edu.uco.ucobet.generales.crosscutting.helpers.ObjectHelper;
 import co.edu.uco.ucobet.generales.crosscutting.helpers.TextHelper;
 import co.edu.uco.ucobet.generales.crosscutting.helpers.UUIDHelper;
 
-import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.messages.MessageCatalog;
+import co.edu.uco.ucobet.generales.application.secondaryports.redis.MessageCatalog;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.Predicate;
 import java.util.ArrayList;

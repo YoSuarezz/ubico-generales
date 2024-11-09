@@ -5,7 +5,7 @@ import java.util.UUID;
 import co.edu.uco.ucobet.generales.crosscutting.helpers.ObjectHelper;
 import co.edu.uco.ucobet.generales.domain.state.exceptions.StateIdIsNullException;
 import co.edu.uco.ucobet.generales.domain.state.rules.StateIdIsNotNullRule;
-import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.messages.MessageCatalog;
+import co.edu.uco.ucobet.generales.application.secondaryports.redis.MessageCatalog;
 import org.springframework.stereotype.Service;
 
 @Service

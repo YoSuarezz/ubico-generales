@@ -1,4 +1,4 @@
-package co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.messages;
+package co.edu.uco.ucobet.generales.application.secondaryports.redis;
 
 public interface MessageCatalog {
     String getMessage(String key);

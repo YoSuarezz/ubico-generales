@@ -1,6 +1,6 @@
 package co.edu.uco.ucobet.generales.domain.city.rules.impl;
 
-import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.messages.MessageCatalog;
+import co.edu.uco.ucobet.generales.application.secondaryports.redis.MessageCatalog;
 import co.edu.uco.ucobet.generales.crosscutting.helpers.TextHelper;
 import co.edu.uco.ucobet.generales.domain.city.exceptions.CityNameIsEmptyException;
 import co.edu.uco.ucobet.generales.domain.city.rules.CityNameIsNotEmptyRule;

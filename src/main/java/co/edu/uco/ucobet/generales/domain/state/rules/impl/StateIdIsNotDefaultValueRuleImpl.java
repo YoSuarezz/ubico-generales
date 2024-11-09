@@ -2,7 +2,7 @@ package co.edu.uco.ucobet.generales.domain.state.rules.impl;
 import co.edu.uco.ucobet.generales.crosscutting.helpers.UUIDHelper;
 import co.edu.uco.ucobet.generales.domain.state.exceptions.StateIdIsDefaultValueException;
 import co.edu.uco.ucobet.generales.domain.state.rules.StateIdIsNotDefaultValueRule;
-import co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.messages.MessageCatalog;
+import co.edu.uco.ucobet.generales.application.secondaryports.redis.MessageCatalog;
 
 import org.springframework.stereotype.Service;
 
