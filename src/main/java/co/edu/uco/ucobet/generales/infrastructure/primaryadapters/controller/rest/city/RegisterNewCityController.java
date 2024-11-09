@@ -62,7 +62,6 @@ public class RegisterNewCityController {
     }
 
     @GetMapping
-
     public ResponseEntity<List<RegisterNewCityDTO>> obtenerCiudades(HttpServletRequest request) {
         if (!isRequestFromPort8080(request)) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);

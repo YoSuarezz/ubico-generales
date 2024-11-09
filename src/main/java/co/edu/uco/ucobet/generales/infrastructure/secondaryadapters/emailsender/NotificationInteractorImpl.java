@@ -1,6 +1,10 @@
 package co.edu.uco.ucobet.generales.infrastructure.secondaryadapters.emailsender;
 
 import co.edu.uco.ucobet.generales.application.secondaryports.emailsender.NotificationInteractor;
+import co.edu.uco.ucobet.generales.application.secondaryports.redis.MessageCatalog;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.security.keyvault.secrets.SecretClient;
+import com.azure.security.keyvault.secrets.SecretClientBuilder;
 import com.mailersend.sdk.MailerSend;
 import com.mailersend.sdk.MailerSendResponse;
 import com.mailersend.sdk.emails.Email;
@@ -15,23 +19,37 @@ public class NotificationInteractorImpl implements NotificationInteractor {
 
     private static final Logger logger = LoggerFactory.getLogger(NotificationInteractorImpl.class);
 
-    @Value("${spring.mailersend.api-key}")
-    private String mailerSendApiKey;
+    private final SecretClient secretClient;
+    private final MessageCatalog messageCatalog;
 
-    @Value("${spring.mailersend.email}")
-    private String mailerSendEmail;
+    public NotificationInteractorImpl(@Value("${azure.keyvault.url}") String keyVaultUrl, MessageCatalog messageCatalog) {
+        this.secretClient = new SecretClientBuilder()
+                .vaultUrl(keyVaultUrl)  // Usa la URL desde el properties
+                .credential(new DefaultAzureCredentialBuilder().build())
+                .buildClient();
+        this.messageCatalog = messageCatalog;
+    }
 
-    @Value("${spring.mailersend.destination.email}")
-    private String mailerSendDestinationEmail;
+    private String getMailerSendApiKey() {
+        return secretClient.getSecret("mailsenderapi1").getValue();
+    }
+
+    private String getMailerSendEmail() {
+        return secretClient.getSecret("ecobetmail").getValue();
+    }
+
+    private String getMailerSendDestinationEmail() {
+        return secretClient.getSecret("email").getValue();
+    }
 
     @Override
     public void notifySuccess(String subject, String message) {
         MailerSend mailerSend = new MailerSend();
-        mailerSend.setToken(mailerSendApiKey);
+        mailerSend.setToken(getMailerSendApiKey());
 
         Email email = new Email();
-        email.setFrom("UCOBET", mailerSendEmail);
-        email.addRecipient("Cristian Quiroz", mailerSendDestinationEmail);
+        email.setFrom("UCOBET", getMailerSendEmail());
+        email.addRecipient("Cristian Quiroz", getMailerSendDestinationEmail());
         email.setSubject(subject);
         email.setPlain(message);
         email.setHtml("<p>" + message + "</p>");
@@ -40,7 +58,7 @@ public class NotificationInteractorImpl implements NotificationInteractor {
             MailerSendResponse response = mailerSend.emails().send(email);
             logger.info("Email sent successfully with ID: {}", response.messageId);
         } catch (MailerSendException e) {
-            logger.error("Failed to send email", e);
+            logger.error(messageCatalog.getMessageOrDefault("MailerSendException"), e);
         }
     }
 }
