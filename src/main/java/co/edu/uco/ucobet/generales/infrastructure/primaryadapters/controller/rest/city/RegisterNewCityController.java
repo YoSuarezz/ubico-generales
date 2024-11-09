@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/general/api/v1/cities")
-@CrossOrigin(origins = "http://localhost:8080", methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(origins = "https://localhost:8080", methods = {RequestMethod.GET, RequestMethod.POST})
 public class RegisterNewCityController {
 
     private final RegisterNewCityInteractor registerNewCityInteractor;
